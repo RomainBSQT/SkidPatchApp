@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		308D2BD919ECC610003E199C /* UIColor+RBTColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308D2BD819ECC610003E199C /* UIColor+RBTColors.swift */; };
 		309248C919EA24E800DD7B08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309248C819EA24E800DD7B08 /* AppDelegate.swift */; };
 		309248CE19EA24E800DD7B08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309248CC19EA24E800DD7B08 /* Main.storyboard */; };
 		309248D019EA24E800DD7B08 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 309248CF19EA24E800DD7B08 /* Images.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		308D2BD819ECC610003E199C /* UIColor+RBTColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+RBTColors.swift"; sourceTree = "<group>"; };
 		309248C319EA24E800DD7B08 /* SkidPatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkidPatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309248C719EA24E800DD7B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		309248C819EA24E800DD7B08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			children = (
 				309248ED19EB277F00DD7B08 /* Calculation.swift */,
 				309248F119EB67DD00DD7B08 /* RBTWheelPatch.swift */,
+				308D2BD819ECC610003E199C /* UIColor+RBTColors.swift */,
 			);
 			path = Toolbox;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				308D2BD919ECC610003E199C /* UIColor+RBTColors.swift in Sources */,
 				309248F019EB278500DD7B08 /* ViewController.swift in Sources */,
 				309248C919EA24E800DD7B08 /* AppDelegate.swift in Sources */,
 				309248EE19EB277F00DD7B08 /* Calculation.swift in Sources */,
@@ -429,6 +433,7 @@
 				309248E419EA24E800DD7B08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		309248E519EA24E800DD7B08 /* Build configuration list for PBXNativeTarget "SkidPatchTests" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +442,7 @@
 				309248E719EA24E800DD7B08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
