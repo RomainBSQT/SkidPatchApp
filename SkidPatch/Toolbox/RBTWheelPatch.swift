@@ -18,16 +18,18 @@ class RBTWheelPatch: UIView {
     var dPlat: Int?
     var dPign: Int?
     var skidPatchAmount: Int?
+    var isAmbidextrous: Bool?
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(frame: CGRect, sizePlateau: Int, sizePignon: Int) {
+    init(frame: CGRect, sizePlateau: Int, sizePignon: Int, isAmbidextrous: Bool) {
         super.init(frame: frame)
         self.dPlat = sizePlateau
         self.dPign = sizePignon
-        self.skidPatchAmount = Calculation.skidPatchNumber(sizePlateau, dPign: sizePignon, isAmbidextrous: false)
+        self.isAmbidextrous  = isAmbidextrous
+        self.skidPatchAmount = Calculation.skidPatchNumber(sizePlateau, dPign: sizePignon)
         println("skidPatchAmount : \(self.skidPatchAmount!)")
     }
 
@@ -48,13 +50,13 @@ class RBTWheelPatch: UIView {
         outerCircle.addArcWithCenter(centerCircle, radius: radius * 0.978, startAngle: CGFloat(startCircle), endAngle: CGFloat(completeCircle), clockwise: true)
         outerCircle.addLineToPoint(centerCircle)
         outerCircle.lineWidth = radius * 0.04
-        UIColor.RBTRGray().setStroke()
+        UIColor.RBTGray().setStroke()
         outerCircle.stroke()
         
         innerCircle.addArcWithCenter(centerCircle, radius: radius * 0.921, startAngle: CGFloat(startCircle), endAngle: CGFloat(completeCircle), clockwise: true)
         innerCircle.addLineToPoint(centerCircle)
         innerCircle.lineWidth = radius * 0.04
-        UIColor.RBTRGrayLight().setStroke()
+        UIColor.RBTGrayLight().setStroke()
         innerCircle.stroke()
     }
     
@@ -82,7 +84,6 @@ class RBTWheelPatch: UIView {
         var sizeArc: Double       = baselineArc
         let centerCircle: CGPoint = CGPoint(x: radius, y: radius)
         var next: CGPoint         = CGPoint()
-        var arc: UIBezierPath     = UIBezierPath()
         var cursor: Double        = startCircle
         var minArcSize: Int       = (self.skidPatchAmount! > minSizeArc) ? minSizeArc : self.skidPatchAmount!
         var sizeInterval: Double
@@ -95,14 +96,44 @@ class RBTWheelPatch: UIView {
         while (cursor < completeCircle) {
             var currentArc: UIBezierPath = UIBezierPath()
             
-            arc.moveToPoint(centerCircle)
+            currentArc.moveToPoint(centerCircle)
             next.x = centerCircle.x + radius * CGFloat(cos(Float(cursor)))
             next.y = centerCircle.y + radius * CGFloat(sin(Float(cursor)))
-            arc.addLineToPoint(next)
-            arc.addArcWithCenter(centerCircle, radius: radius, startAngle: CGFloat(cursor), endAngle: CGFloat(cursor + sizeArc), clockwise: true)
-            arc.addLineToPoint(centerCircle)
+            currentArc.addLineToPoint(next)
+            currentArc.addArcWithCenter(centerCircle, radius: radius, startAngle: CGFloat(cursor), endAngle: CGFloat(cursor + sizeArc), clockwise: true)
+            currentArc.addLineToPoint(centerCircle)
             UIColor.RBTRed().setFill()
-            arc.fill()
+            currentArc.fill()
+            
+            cursor += sizeArc + sizeInterval
+        }
+        self.drawAmbidextrousArcs(radius, sizeArc: sizeArc, sizeInterval: sizeInterval)
+    }
+    
+    private func drawAmbidextrousArcs(radius: CGFloat, sizeArc: Double, sizeInterval: Double) {
+        if (self.isAmbidextrous == false) {
+            return
+        }
+        let (reducedPlat: Int, reducedPign: Int) = Calculation.reducedRatio(self.dPlat!, dPign: self.dPign!)
+        if (reducedPlat % 2 == 0) {
+            return
+        }
+        var start: Double         = startCircle + ((sizeArc + sizeInterval) / 2)
+        var cursor: Double        = start
+        let centerCircle: CGPoint = CGPoint(x: radius, y: radius)
+        var next: CGPoint         = CGPoint()
+        
+        while (cursor < completeCircle + start) {
+            var currentArc: UIBezierPath = UIBezierPath()
+
+            currentArc.moveToPoint(centerCircle)
+            next.x = centerCircle.x + radius * CGFloat(cos(Float(cursor)))
+            next.y = centerCircle.y + radius * CGFloat(sin(Float(cursor)))
+            currentArc.addLineToPoint(next)
+            currentArc.addArcWithCenter(centerCircle, radius: radius, startAngle: CGFloat(cursor), endAngle: CGFloat(cursor + sizeArc), clockwise: true)
+            currentArc.addLineToPoint(centerCircle)
+            UIColor.RBTGreen().setFill()
+            currentArc.fill()
             
             cursor += sizeArc + sizeInterval
         }

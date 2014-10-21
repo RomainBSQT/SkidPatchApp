@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
-        self.skidPatch = RBTWheelPatch(frame: CGRectMake(50, 50, CGRectGetWidth(self.view.frame) - 100, CGRectGetWidth(self.view.frame) - 100), sizePlateau: 30, sizePignon: 25)
+        self.skidPatch = RBTWheelPatch(frame: CGRectMake(50, 50, CGRectGetWidth(self.view.frame) - 100, CGRectGetWidth(self.view.frame) - 100), sizePlateau: 30, sizePignon: 14, isAmbidextrous: true)
         self.skidPatch?.backgroundColor = UIColor.clearColor()
         self.view.addSubview(self.skidPatch!)
     }

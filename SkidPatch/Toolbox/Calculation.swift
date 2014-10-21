@@ -22,18 +22,16 @@ class Calculation: NSObject {
         return tmpB
     }
     
-    class func skidPatchNumber(dPlat: Int, dPign: Int, isAmbidextrous: Bool) -> Int {
+    class func reducedRatio(dPlat: Int, dPign: Int) -> (reducedPlat: Int, reducedPign: Int) {
+        var gcd: Int = Calculation.gcd(dPlat, b: dPign)
+        return (dPlat / gcd, dPign / gcd)
+    }
+    
+    class func skidPatchNumber(dPlat: Int, dPign: Int) -> Int {
         var gcd: Int = Calculation.gcd(dPlat, b: dPign)
         var simpDPlat: Int = dPlat / gcd
         var simpDPign: Int = dPign / gcd
-        if (!isAmbidextrous) {
-            return simpDPign
-        }
-        if (simpDPlat % 2 == 0) {
-            return simpDPign
-        } else {
-            return simpDPign * 2
-        }
+        return simpDPign
     }
     
 }

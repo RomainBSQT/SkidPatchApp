@@ -23,23 +23,23 @@ extension UIColor {
         return UIColor.rgb(red: 255, green: 102.0, blue: 51.0)
     }
     
-    class func RBTRGreen() -> UIColor {
+    class func RBTGreen() -> UIColor {
         return UIColor.rgb(red: 0, green: 204.0, blue: 102.0)
     }
     
-    class func RBTRYellow() -> UIColor {
+    class func RBTYellow() -> UIColor {
         return UIColor.rgb(red: 255, green: 204.0, blue: 255)
     }
     
-    class func RBTRGrayLight() -> UIColor {
+    class func RBTGrayLight() -> UIColor {
         return UIColor.grayWithRGB(153.0)
     }
     
-    class func RBTRGray() -> UIColor {
+    class func RBTGray() -> UIColor {
         return UIColor.grayWithRGB(74.0)
     }
     
-    class func RBTRGrayStrong() -> UIColor {
+    class func RBTGrayStrong() -> UIColor {
         return UIColor.grayWithRGB(44.0)
     }
     
