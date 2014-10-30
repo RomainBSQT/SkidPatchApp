@@ -48,13 +48,11 @@ class RBTWheelPatch: UIView {
         let centerCircle: CGPoint = CGPoint(x: radius, y: radius)
         
         outerCircle.addArcWithCenter(centerCircle, radius: radius * 0.978, startAngle: CGFloat(startCircle), endAngle: CGFloat(completeCircle), clockwise: true)
-        outerCircle.addLineToPoint(centerCircle)
         outerCircle.lineWidth = radius * 0.04
         UIColor.RBTGray().setStroke()
         outerCircle.stroke()
         
         innerCircle.addArcWithCenter(centerCircle, radius: radius * 0.921, startAngle: CGFloat(startCircle), endAngle: CGFloat(completeCircle), clockwise: true)
-        innerCircle.addLineToPoint(centerCircle)
         innerCircle.lineWidth = radius * 0.04
         UIColor.RBTGrayLight().setStroke()
         innerCircle.stroke()
